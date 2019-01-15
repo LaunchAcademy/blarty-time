@@ -6,3 +6,30 @@
 <p><%= @party.location %></p>
 <p><%= @party.description %></p>
 
+<%- if @party.guests.any? %>
+  <ul>
+  <%- @party.guests.each do |guest| -%>
+    <li><%= guest.first_name %> <%= guest.last_name %></li>
+  <%- end -%>
+  </ul>
+<%- end -%>
+
+<h2>Add a Guest</h2>
+
+<%- if @guest.errors.any? %>
+  <ul>
+    <%- @guest.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <%- end -%>
+  </ul>
+<%- end -%>
+<%= form_for [@party, @guest] do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+
+  <%= f.submit "Add Guest" %>
+<%- end %>
+
