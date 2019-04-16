@@ -1,0 +1,10 @@
+<h1> All My Parties </h1>
+<div>
+  <ul>
+    <% @parties.each do |specific_party| %>
+      <li><%= link_to specific_party.name, party_path(specific_party) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to "Make Dat Party", new_party_path %>
